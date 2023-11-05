@@ -75,7 +75,4 @@ def CleanScs():
     print("Deleting selected images...")
     move_to_trash(images_to_delete)
 
-    # print("Cleanup complete. Deleted the selected images.")
-
-
-CleanScs()
+    print("Cleanup complete. Deleted the selected images.")
