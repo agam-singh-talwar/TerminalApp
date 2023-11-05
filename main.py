@@ -7,12 +7,12 @@ import os
 
 
 # Define the menu options
-menu_options = ["Unused Screenshots", "Quit"]
+menu_options = ["Unused Screenshots", "Exit"]
 
 # Define the functions to be executed for each menu option
 menu_functions = {
     "Unused Screenshots": CleanScs,
-    "Quit": 0
+    "Exit": 0
 }
 
 
@@ -39,7 +39,7 @@ def footer(stdscr):
 
     # Print the title with '*' padding
     title_line = '*' * left_padding + title + '*' * right_padding
-    stdscr.addstr(0, 0, title_line, curses.A_BOLD)
+    stdscr.addstr(1, 0, title_line, curses.A_BOLD)
     print_stars(stdscr, 2)
 
 
@@ -95,14 +95,18 @@ def main(stdscr):
             selected_option = menu_options[current_row]
             # Check if the selected_option is in menu_functions
             if selected_option in menu_functions:
-                if selected_option == "Quit":
+                if selected_option == "Exit":
                     quit = False
                     break
                 else:
                     # Call the corresponding function
                     menu_functions[selected_option]()
+                    curses.napms(1500)
     os.system("clear")
-    footer(stdscr)
+    stdscr.addstr(3, 0, "Thank you for using Buzz Terminal!", curses.A_BOLD)
+    stdscr.refresh()  # Refresh the screen to make the message visible
+    curses.napms(1500)  # Pause for a few seconds (2 seconds in this example)
+    os.system("clear")
 
 
 if __name__ == '__main__':
